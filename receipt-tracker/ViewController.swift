@@ -58,6 +58,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             //Do Whatever You want on End of Gesture
             timer?.invalidate()
             timer = nil
+            cleanPreviewLayerBorder()
         }
         else if sender.state == .began {
             print("UIGestureRecognizerStateBegan.")
@@ -82,16 +83,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         } else if (!bottom!) {
             bottom = true
             previewLayer.addBottomBorderWithColor(color: UIColor.red, width: 5.0)
-        } else {
-            top = false
-            side = false
-            bottom = false
-            previewLayer.addBottomBorderWithColor(color: UIColor.clear, width: 0.0)
-            previewLayer.addTopBorderWithColor(color: UIColor.clear, width: 0.0)
-            previewLayer.addLeftBorderWithColor(color: UIColor.clear, width: 0.0)
-            previewLayer.addRightBorderWithColor(color: UIColor.clear, width: 0.0)
-
         }
+    }
+    
+    func cleanPreviewLayerBorder() {
+        top = false
+        side = false
+        bottom = false
+        previewLayer.addBottomBorderWithColor(color: UIColor.clear, width: 0.0)
+        previewLayer.addTopBorderWithColor(color: UIColor.clear, width: 0.0)
+        previewLayer.addLeftBorderWithColor(color: UIColor.clear, width: 0.0)
+        previewLayer.addRightBorderWithColor(color: UIColor.clear, width: 0.0)
     }
 
     override func didReceiveMemoryWarning() {
