@@ -23,8 +23,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.previewLayer.bringSubview(toFront: shutter)
-        
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
         do {
@@ -42,6 +40,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         } catch {
             print(error)
         }
+        
+        self.previewLayer.bringSubview(toFront: shutter)
+
     }
 
     override func didReceiveMemoryWarning() {
