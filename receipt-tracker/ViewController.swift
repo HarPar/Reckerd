@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    
+    var bottom, side, top : Bool?
+    var timer : Timer?
 
     @IBOutlet weak var previewLayer: UIView!
     
@@ -38,7 +41,39 @@ class ViewController: UIViewController {
             print(error)
         }
         
-        previewLayer.addTopBorderWithColor(color: UIColor.blue, width: 1.0)
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: Selector(("longPressed:")))
+        
+        self.view.addGestureRecognizer(longPressRecognizer)
+        
+    }
+    
+    func longPressed(sender: UILongPressGestureRecognizer)
+    {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+    }
+    
+    @objc func update () {
+        if (!top!) {
+            top = true
+            previewLayer.addTopBorderWithColor(color: UIColor.red, width: 5.0)
+        } else if (!side!) {
+            side = true
+            previewLayer.addRightBorderWithColor(color: UIColor.red, width: 5.0)
+            previewLayer.addLeftBorderWithColor(color: UIColor.red, width: 5.0)
+        } else if (!bottom!) {
+            bottom = true
+            previewLayer.addBottomBorderWithColor(color: UIColor.red, width: 5.0)
+        } else {
+            top = false
+            side = false
+            bottom = false
+            previewLayer.addBottomBorderWithColor(color: UIColor.clear, width: 0.0)
+            previewLayer.addTopBorderWithColor(color: UIColor.clear, width: 0.0)
+            previewLayer.addLeftBorderWithColor(color: UIColor.clear, width: 0.0)
+            previewLayer.addRightBorderWithColor(color: UIColor.clear, width: 0.0)
+
+        }
     }
 
     override func didReceiveMemoryWarning() {
