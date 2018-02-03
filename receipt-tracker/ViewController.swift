@@ -42,10 +42,22 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: Selector(("longPressed:")))
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_:)))
+        previewLayer.addGestureRecognizer(longGesture)
         
-        self.previewLayer.addGestureRecognizer(longPressRecognizer)
-        
+    }
+    
+    @objc func longTap(_ sender: UIGestureRecognizer){
+        print("Long tap")
+        if sender.state == .ended {
+            print("UIGestureRecognizerStateEnded")
+            //Do Whatever You want on End of Gesture
+        }
+        else if sender.state == .began {
+            print("UIGestureRecognizerStateBegan.")
+            //Do Whatever You want on Began of Gesture
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        }
     }
     
     func longPressed(sender: UILongPressGestureRecognizer)
