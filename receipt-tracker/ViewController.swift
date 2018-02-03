@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import SwiftyCam
 
-class ViewController: SwiftyCamViewController {
+class ViewController: UIViewController {
     
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
