@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Alamofire
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -60,11 +60,11 @@ class ViewController: UIViewController {
             photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: firstAvailablePreviewPhotoPixelFormatTypes]
         }
         
-        photoOutput.capturePhoto(with: photoSettings, delegate: self as! AVCapturePhotoCaptureDelegate)
+        photoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
     }
 }
 
-extension ViewController: AVCapturePhotoCaptureDelegate {
+extension ViewController {
     
     static func post(image: UIImage, for username: String) {
         
