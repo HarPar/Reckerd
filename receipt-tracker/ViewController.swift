@@ -14,11 +14,16 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
 
+    @IBOutlet weak var shutter: UIButton!
     @IBOutlet weak var previewLayer: UIView!
     
+    @IBAction func shutterClicked(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.previewLayer.bringSubview(toFront: shutter)
         
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         

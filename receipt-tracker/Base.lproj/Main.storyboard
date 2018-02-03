@@ -23,9 +23,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNu-7f-ihM">
-                                        <rect key="frame" x="142" y="545" width="91" height="91"/>
+                                        <rect key="frame" x="142" y="546" width="91" height="91"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="shutter.png"/>
+                                        <connections>
+                                            <action selector="shutterClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3IG-3Z-7U7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -36,6 +39,7 @@
                     </view>
                     <connections>
                         <outlet property="previewLayer" destination="teq-wj-q3R" id="vt1-Wj-M3u"/>
+                        <outlet property="shutter" destination="rNu-7f-ihM" id="I0U-EE-LtF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
