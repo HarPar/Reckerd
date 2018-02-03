@@ -32,12 +32,14 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             
             captureSession = AVCaptureSession()
             captureSession?.addInput(input)
+            captureSession?.addOutput(photoOutput)
             
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreviewLayer?.frame = view.layer.bounds
             previewLayer.layer.addSublayer(videoPreviewLayer!)
             
+            captureSession?.commitConfiguration()
             captureSession?.startRunning()
         } catch {
             print(error)
