@@ -13,19 +13,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-    
-    var bottom, side, top : Bool?
-    var timer : Timer?
 
     @IBOutlet weak var previewLayer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        bottom = false
-        top = false
-        side = false
         
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
@@ -44,56 +37,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         } catch {
             print(error)
         }
-        
-        
-        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_:)))
-        previewLayer.addGestureRecognizer(longGesture)
-        
-    }
-    
-    @objc func longTap(_ sender: UIGestureRecognizer){
-        print("Long tap")
-        if sender.state == .ended {
-            print("UIGestureRecognizerStateEnded")
-            //Do Whatever You want on End of Gesture
-            timer?.invalidate()
-            timer = nil
-            cleanPreviewLayerBorder()
-        }
-        else if sender.state == .began {
-            print("UIGestureRecognizerStateBegan.")
-            //Do Whatever You want on Began of Gesture
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
-        }
-    }
-    
-    func longPressed(sender: UILongPressGestureRecognizer)
-    {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
-    }
-    
-    @objc func update () {
-        if (!top!) {
-            top = true
-            previewLayer.addTopBorderWithColor(color: UIColor.red, width: 5.0)
-        } else if (!side!) {
-            side = true
-            previewLayer.addRightBorderWithColor(color: UIColor.red, width: 5.0)
-            previewLayer.addLeftBorderWithColor(color: UIColor.red, width: 5.0)
-        } else if (!bottom!) {
-            bottom = true
-            previewLayer.addBottomBorderWithColor(color: UIColor.red, width: 5.0)
-        }
-    }
-    
-    func cleanPreviewLayerBorder() {
-        top = false
-        side = false
-        bottom = false
-        previewLayer.addBottomBorderWithColor(color: UIColor.clear, width: 0.0)
-        previewLayer.addTopBorderWithColor(color: UIColor.clear, width: 0.0)
-        previewLayer.addLeftBorderWithColor(color: UIColor.clear, width: 0.0)
-        previewLayer.addRightBorderWithColor(color: UIColor.clear, width: 0.0)
     }
 
     override func didReceiveMemoryWarning() {

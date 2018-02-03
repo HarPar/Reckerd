@@ -10,6 +10,7 @@
 		2320397354F77A8DF799DF3E /* Pods_receipt_tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837324749F4CEB17E1D9277F /* Pods_receipt_tracker.framework */; };
 		34C30C383064AF55AE1C2B15 /* Pods_receipt_trackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF88CDE38008139961D794B1 /* Pods_receipt_trackerUITests.framework */; };
 		A4D5128D6F22AB80A2F43F83 /* Pods_receipt_trackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 112BA0849F6A21B6A8D27C01 /* Pods_receipt_trackerTests.framework */; };
+		E6B121A02025BD5E00EFF104 /* shutter.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B1219F2025BD5E00EFF104 /* shutter.png */; };
 		E6D6601B2025972F0005F2CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D6601A2025972F0005F2CA /* AppDelegate.swift */; };
 		E6D6601D2025972F0005F2CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D6601C2025972F0005F2CA /* ViewController.swift */; };
 		E6D660202025972F0005F2CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6D6601E2025972F0005F2CA /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		837324749F4CEB17E1D9277F /* Pods_receipt_tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_receipt_tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFA726F2906D58B5F3FE177 /* Pods-receipt-trackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-receipt-trackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-receipt-trackerTests/Pods-receipt-trackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		94E0309FEA437E8DF00577E7 /* Pods-receipt-trackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-receipt-trackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-receipt-trackerTests/Pods-receipt-trackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		E6B1219F2025BD5E00EFF104 /* shutter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shutter.png; path = ../../../../../Desktop/shutter.png; sourceTree = "<group>"; };
 		E6D660172025972F0005F2CA /* receipt-tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "receipt-tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D6601A2025972F0005F2CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6D6601C2025972F0005F2CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				E6D660212025972F0005F2CA /* Assets.xcassets */,
 				E6D660232025972F0005F2CA /* LaunchScreen.storyboard */,
 				E6D660262025972F0005F2CA /* Info.plist */,
+				E6B1219F2025BD5E00EFF104 /* shutter.png */,
 			);
 			path = "receipt-tracker";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6D660252025972F0005F2CA /* LaunchScreen.storyboard in Resources */,
+				E6B121A02025BD5E00EFF104 /* shutter.png in Resources */,
 				E6D660222025972F0005F2CA /* Assets.xcassets in Resources */,
 				E6D660202025972F0005F2CA /* Main.storyboard in Resources */,
 			);
