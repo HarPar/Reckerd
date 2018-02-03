@@ -23,7 +23,7 @@ class ViewController: SwiftyCamViewController {
         
         
         
-        /*let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice!)
@@ -39,7 +39,7 @@ class ViewController: SwiftyCamViewController {
             captureSession?.startRunning()
         } catch {
             print(error)
-        }*/
+        }
     }
 
     override func didReceiveMemoryWarning() {
