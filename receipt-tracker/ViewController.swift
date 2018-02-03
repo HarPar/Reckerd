@@ -44,7 +44,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: Selector(("longPressed:")))
         
-        self.view.addGestureRecognizer(longPressRecognizer)
+        self.previewLayer.addGestureRecognizer(longPressRecognizer)
         
     }
     
