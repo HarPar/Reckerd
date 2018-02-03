@@ -23,6 +23,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        bottom = false
+        top = false
+        side = false
+        
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
         do {
@@ -52,6 +56,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         if sender.state == .ended {
             print("UIGestureRecognizerStateEnded")
             //Do Whatever You want on End of Gesture
+            timer?.invalidate()
+            timer = nil
         }
         else if sender.state == .began {
             print("UIGestureRecognizerStateBegan.")
