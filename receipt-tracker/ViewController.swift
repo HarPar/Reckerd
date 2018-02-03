@@ -63,6 +63,24 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
         
         photoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
+        
+        let stillImageOutput = AVCapturePhotoOutput()
+        if let videoConnection = stillImageOutput.connection(with: AVMediaType.video) {
+            // ...
+            // Code for photo capture goes here...
+            stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: { (sampleBuffer, error) -> Void in
+                // ...
+                // Process the image data (sampleBuffer) here to get an image file we can put in our captureImageView
+                if sampleBuffer != nil {
+                    let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+                    let dataProvider = CGDataProviderCreateWithCFData(imageData)
+                    let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentDefault)
+                    let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
+                    // ...
+                    // Add the image to captureImageView here...
+                }
+            })
+        }
     }
 }
 
