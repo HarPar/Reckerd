@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Vision
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -19,6 +19,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var shutter: UIButton!
     @IBOutlet weak var previewLayer: UIView!
+    
+    var devicePosition: AVCaptureDevice.Position = .back
+
     
     @IBAction func shutterClicked(_ sender: Any) {
     }
@@ -71,10 +74,56 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             
         }
     }
-
+    
+    func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return}
+        
+        var requestOptions:[VNImageOption:Any] = [:]
+        
+        if let cameraIntrinsicData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil) {
+            requestOptions = [.cameraIntrinsics:cameraIntrinsicData]
+        }
+        
+        let o = self.exifOrientationFromDeviceOrientation()
+        
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue:UInt32(o))!, options: requestOptions)
+        
+        do {
+            try imageRequestHandler.perform(self.requests)
+        } catch {
+            print(error)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func exifOrientationFromDeviceOrientation() -> Int32 {
+        enum DeviceOrientation: Int32 {
+            case top0ColLeft = 1
+            case top0ColRight = 2
+            case bottom0ColRight = 3
+            case bottom0ColLeft = 4
+            case left0ColTop = 5
+            case right0ColTop = 6
+            case right0ColBottom = 7
+            case left0ColBottom = 8
+        }
+        var exifOrientation: DeviceOrientation
+        
+        switch UIDevice.current.orientation {
+        case .portraitUpsideDown:
+            exifOrientation = .left0ColBottom
+        case .landscapeLeft:
+            exifOrientation = devicePosition == .front ? .bottom0ColRight : .top0ColLeft
+        case .landscapeRight:
+            exifOrientation = devicePosition == .front ? .top0ColLeft : .bottom0ColRight
+        default:
+            exifOrientation = .right0ColTop
+        }
+        return exifOrientation.rawValue
     }
 
 
