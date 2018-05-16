@@ -1,0 +1,24 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'receipt-tracker' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for receipt-tracker
+  pod 'Alamofire'
+  pod 'SwiftyCam'
+  pod 'NVActivityIndicatorView'
+  pod 'SwiftyJSON'
+
+  target 'receipt-trackerTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'receipt-trackerUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
